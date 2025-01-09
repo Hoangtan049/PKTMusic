@@ -104,7 +104,7 @@ public class Favorite extends Fragment {
         recyclerView.setAdapter(myAdaper);
 
 
-        DatabaseReference favoriteRef = FirebaseDatabase.getInstance().getReference("favorites");
+        DatabaseReference favoriteRef = FirebaseDatabase.getInstance().getReference("ListSong");
         favoriteRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -112,6 +112,7 @@ public class Favorite extends Fragment {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     ListSong song = dataSnapshot.getValue(ListSong.class); // Chuyển đổi đối tượng
                     if (song != null && Boolean.TRUE.equals(song.getFavorite())) {
+                        song.setKey(dataSnapshot.getKey());
                         list.add(song); // Thêm vào danh sách hiển thị
                     }
                     Log.d("FavoriteFragment", "Loaded song: " + song.getName());

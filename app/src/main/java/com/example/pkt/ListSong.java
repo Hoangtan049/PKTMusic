@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class ListSong implements Parcelable {
-    private String Image, Name, Artist, URL, Category, Album, Lyrics;
+    private String Image, Name, Artist, URL, Category, Album, Lyrics,Key;
     private Boolean Favorite;
     int View;
 
@@ -14,7 +14,7 @@ public class ListSong implements Parcelable {
     // Constructor với tất cả các tham số
 
 
-    public ListSong(String image, String name, String artist, String URL, String category, String album, String lyrics, Boolean favorite, int view) {
+    public ListSong(String image, String name, String artist, String URL, String category, String album, String lyrics,String key, Boolean favorite, int view) {
         Image = image;
         Name = name;
         Artist = artist;
@@ -24,6 +24,7 @@ public class ListSong implements Parcelable {
         Lyrics = lyrics;
         Favorite = favorite;
         View = view;
+        Key=key;
     }
 
     // Parcelable implementation
@@ -37,6 +38,7 @@ public class ListSong implements Parcelable {
         Lyrics = in.readString();
         Favorite = in.readByte() != 0;
         View=in.readInt();
+        Key=in.readString();
     }
 
     public static final Creator<ListSong> CREATOR = new Creator<ListSong>() {
@@ -65,11 +67,20 @@ public class ListSong implements Parcelable {
         dest.writeString(Category);
         dest.writeString(Album);
         dest.writeString(Lyrics);
+        dest.writeString(Key);
         dest.writeByte((byte) (Favorite ? 1 : 0));
         dest.writeInt(View);
     }
 
     // Getter và Setter
+
+    public String getKey() {
+        return Key;
+    }
+
+    public void setKey(String key) {
+        Key = key;
+    }
 
     public int getView() {
         return View;
@@ -153,7 +164,9 @@ public class ListSong implements Parcelable {
                 ", Category='" + Category + '\'' +
                 ", Album='" + Album + '\'' +
                 ", Lyrics='" + Lyrics + '\'' +
+                ", Key='" + Key + '\'' +
                 ", Favorite=" + Favorite +
+                ", View=" + View +
                 '}';
     }
 }

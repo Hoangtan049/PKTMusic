@@ -53,23 +53,25 @@ public class MyAdaper extends RecyclerView.Adapter<MyAdaper.MyViewHolder> {
         }
 
         holder.fvrt_btn.setOnClickListener(v -> {
-            DatabaseReference favoritesRef = FirebaseDatabase.getInstance()
-                    .getReference("favorites")
-                    .child(listSong.getName());
+            String Songkey = listSong.getKey();
+            DatabaseReference listsongRef = FirebaseDatabase.getInstance()
+                    .getReference("ListSong")
+                    .child(Songkey);
 
             boolean isFavorite = Boolean.TRUE.equals(listSong.getFavorite());
 
             if (isFavorite) {
-                // Nếu đã yêu thích -> Xóa khỏi Favorites
-                favoritesRef.removeValue();
+                // Nếu đã yêu thích -> Xóa trạng thái yêu thích
                 listSong.setFavorite(false);
+                listsongRef.child("Favorite").setValue(false);
                 Toast.makeText(context, "Đã xóa khỏi danh sách yêu thích", Toast.LENGTH_SHORT).show();
             } else {
-                // Nếu chưa yêu thích -> Thêm vào Favorites
+                // Nếu chưa yêu thích -> Đánh dấu là yêu thích
                 listSong.setFavorite(true);
-                favoritesRef.setValue(listSong);
+                listsongRef.child("Favorite").setValue(true);
                 Toast.makeText(context, "Đã thêm vào danh sách yêu thích", Toast.LENGTH_SHORT).show();
             }
+
 
             // Cập nhật giao diện
             notifyItemChanged(holder.getAdapterPosition());

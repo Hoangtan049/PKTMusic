@@ -75,6 +75,7 @@ public class SongByAlbumActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     ListSong listSong = dataSnapshot.getValue(ListSong.class);
                     if (listSong != null && listSong.getAlbum().contains(namealbum)) {
+                        listSong.setKey(dataSnapshot.getKey());
                         albumList.add(listSong);
                     }
                 }

@@ -75,6 +75,7 @@ public class SongByCategoryActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     ListSong listSong = dataSnapshot.getValue(ListSong.class);
                     if (listSong != null && listSong.getCategory().contains(category)) {
+                        listSong.setKey(dataSnapshot.getKey());
                         List.add(listSong);
                     }
                 }

@@ -75,6 +75,7 @@ public class SongsByArtistActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     ListSong listSong = dataSnapshot.getValue(ListSong.class);
                     if (listSong != null && listSong.getArtist().contains(artist)) {
+                        listSong.setKey(dataSnapshot.getKey());
                         List.add(listSong);
                     }
                 }

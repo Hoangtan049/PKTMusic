@@ -124,6 +124,7 @@ public class Search extends Fragment {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     ListSong listSong = dataSnapshot.getValue(ListSong.class);
                     if (listSong != null) {
+                        listSong.setKey(dataSnapshot.getKey());
                         list.add(listSong);
                         Log.d("FirebaseData", "ListSong Object: " + listSong);
 
