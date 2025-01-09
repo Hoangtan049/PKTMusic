@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/key1"
+    tools:context=".SongsByArtistActivity">
+
+    <LinearLayout
+        android:id="@+id/profile_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <com.google.android.material.transformation.TransformationChildCard
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="8dp"
+            app:cardCornerRadius="500dp"
+            app:cardElevation="4dp">
+
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+
+                />
+        </com.google.android.material.transformation.TransformationChildCard>
+
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Tên của bạn"
+            android:textColor="@color/black"
+            android:textSize="32sp" />
+    </LinearLayout>
+
+
+    <SearchView
+        android:id="@+id/search_bar_song"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_layout"
+        android:layout_margin="8dp"
+        android:layout_marginTop="55dp"
+        android:background="@drawable/lavender_border"
+        android:closeIcon="@drawable/baseline_clear_24"
+        android:focusable="false"
+        android:iconifiedByDefault="false"
+        android:queryHint="Nhập tên ca sĩ bạn yêu thích"
+        android:searchHintIcon="@null"
+        android:searchIcon="@drawable/baseline_search_24" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listsongbyartist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/search_bar_song"
+        android:scrollbars="vertical" />
+
+</RelativeLayout>

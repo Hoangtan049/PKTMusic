@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/key1"
+    tools:context=".Search">
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="TÌm Kiếm"
+        android:textSize="30dp" />
+
+    <SearchView
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/lavender_border"
+        android:closeIcon="@drawable/baseline_clear_24"
+        android:focusable="false"
+        android:iconifiedByDefault="false"
+        android:queryHint="Bài Hát Bạn Muốn Nghe"
+        android:searchHintIcon="@null"
+        android:searchIcon="@drawable/baseline_search_24">
+
+    </SearchView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listmusicsearch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/search_bar"
+        android:scrollbars="vertical" />
+
+</RelativeLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/key1"
+    tools:context=".ArtistListActivity">
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:id="@+id/search_bar_artist"
+        android:iconifiedByDefault="false"
+        android:searchHintIcon="@null"
+        android:queryHint="Nhập tên ca sĩ bạn yêu thích"
+        android:focusable="false"
+        android:closeIcon="@drawable/baseline_clear_24"
+        android:searchIcon="@drawable/baseline_search_24"
+        android:background="@drawable/lavender_border" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listartist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/search_bar_artist"
+        android:scrollbars="vertical" />
+</RelativeLayout>

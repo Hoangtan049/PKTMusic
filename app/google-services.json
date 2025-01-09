@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "557743430623",
+    "firebase_url": "https://slider-82286-default-rtdb.firebaseio.com",
+    "project_id": "slider-82286",
+    "storage_bucket": "slider-82286.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:557743430623:android:9a2f0e5adc6dce2762826a",
+        "android_client_info": {
+          "package_name": "com.example.pkt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9aepK9uzkZCrF4VkqPGj3uxkWDLXXpBs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
