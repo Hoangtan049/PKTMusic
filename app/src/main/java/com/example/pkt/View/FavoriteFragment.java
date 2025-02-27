@@ -1,6 +1,5 @@
-package com.example.pkt;
+package com.example.pkt.View;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,9 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.example.pkt.Adapter.MyAdaper;
+import com.example.pkt.Classes.ListSong;
+import com.example.pkt.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,10 +26,10 @@ import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Favorite#newInstance} factory method to
+ * Use the {@link FavoriteFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Favorite extends Fragment {
+public class FavoriteFragment extends Fragment {
     RecyclerView recyclerView;
 
     MyAdaper myAdaper;
@@ -43,7 +44,7 @@ public class Favorite extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Favorite() {
+    public FavoriteFragment() {
         // Required empty public constructor
     }
 
@@ -56,8 +57,8 @@ public class Favorite extends Fragment {
      * @return A new instance of fragment Favorite.
      */
     // TODO: Rename and change types and number of parameters
-    public static Favorite newInstance(String param1, String param2) {
-        Favorite fragment = new Favorite();
+    public static FavoriteFragment newInstance(String param1, String param2) {
+        FavoriteFragment fragment = new FavoriteFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

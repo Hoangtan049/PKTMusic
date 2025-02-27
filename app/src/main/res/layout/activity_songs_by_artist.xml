@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/key1"
-    tools:context=".SongsByArtistActivity">
+    tools:context=".View.SongsByArtistActivity">
 
     <LinearLayout
         android:id="@+id/profile_layout"

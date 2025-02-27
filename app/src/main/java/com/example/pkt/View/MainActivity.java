@@ -1,20 +1,14 @@
-package com.example.pkt;
+package com.example.pkt.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.MediaStore;
 
+import com.example.pkt.R;
 import com.example.pkt.databinding.ActivityMainBinding;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -25,18 +19,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replaceFrament(new Home());
+        replaceFrament(new HomeFrament());
 
         binding.navigation.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.home:
-                    replaceFrament(new Home());
+                    replaceFrament(new HomeFrament());
                     break;
                 case R.id.search:
-                    replaceFrament(new Search());
+                    replaceFrament(new SearchFragment());
                     break;
                 case R.id.favorite:
-                    replaceFrament(new Favorite());
+                    replaceFrament(new FavoriteFragment());
                     break;
             }
             return true;

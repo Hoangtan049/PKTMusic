@@ -1,4 +1,4 @@
-package com.example.pkt;
+package com.example.pkt.Classes;
 
 public class Artist {
     String imageArtist, name;

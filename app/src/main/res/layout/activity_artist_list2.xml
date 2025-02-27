@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/key1"
-    tools:context=".ArtistListActivity">
+    tools:context=".View.ArtistListActivity">
 
     <SearchView
         android:layout_width="match_parent"

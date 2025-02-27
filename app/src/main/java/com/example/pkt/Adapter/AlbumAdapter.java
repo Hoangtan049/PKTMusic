@@ -1,4 +1,4 @@
-package com.example.pkt;
+package com.example.pkt.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.pkt.Classes.Album;
+import com.example.pkt.R;
+import com.example.pkt.View.SongByAlbumActivity;
 
 import java.util.ArrayList;
 

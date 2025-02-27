@@ -1,4 +1,4 @@
-package com.example.pkt;
+package com.example.pkt.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.pkt.Adapter.MyAdaper;
+import com.example.pkt.Classes.ListSong;
+import com.example.pkt.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,9 +24,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.Normalizer;
 import java.util.ArrayList;
 
-public class SongsByArtistActivity extends AppCompatActivity {
+public class SongByAlbumActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    ArrayList<ListSong> List;
+    ArrayList<ListSong> albumList;
     MyAdaper songAdapter;
     TextView textView;
     SearchView searchView;
@@ -40,7 +43,7 @@ public class SongsByArtistActivity extends AppCompatActivity {
     public void searchList(String text) {
         ArrayList<ListSong> searchList = new ArrayList<>();
         String normalizedText = removeAccents(text);
-        for (ListSong listSong : List) {
+        for (ListSong listSong : albumList) {
             String normalizedName = removeAccents(listSong.getName());
             String normalizedArtist = removeAccents(listSong.getArtist());
             if (
@@ -56,41 +59,40 @@ public class SongsByArtistActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_songs_by_artist);
-        textView = findViewById(R.id.profile_name);
-        imageView = findViewById(R.id.profile_image);
-        searchView = findViewById(R.id.search_bar_song);
-        recyclerView = findViewById(R.id.listsongbyartist);
+        setContentView(R.layout.activity_song_by_album);
+        searchView = findViewById(R.id.search_bar_album);
+        recyclerView = findViewById(R.id.listsongbyalbum);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        String artist = getIntent().getStringExtra("artist_name");
-        String image = getIntent().getStringExtra("artist_image");
-        textView.setText(artist);
-        Glide.with(this).load(image).into(imageView);
+        imageView = findViewById(R.id.album_image);
+        textView = findViewById(R.id.album_name);
+        String namealbum = getIntent().getStringExtra("album_name");
+        String imagealbum = getIntent().getStringExtra("album_image");
+        textView.setText(namealbum);
+        Glide.with(this).load(imagealbum).into(imageView);
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("ListSong");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List = new ArrayList<>();
+                albumList = new ArrayList<>();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     ListSong listSong = dataSnapshot.getValue(ListSong.class);
-                    if (listSong != null && listSong.getArtist().contains(artist)) {
+                    if (listSong != null && listSong.getAlbum().contains(namealbum)) {
                         listSong.setKey(dataSnapshot.getKey());
-                        List.add(listSong);
+                        albumList.add(listSong);
                     }
                 }
-                if (List.size() > 0) {
-                    songAdapter = new MyAdaper(SongsByArtistActivity.this, List);
+                if (albumList.size() > 0) {
+                    songAdapter = new MyAdaper(SongByAlbumActivity.this, albumList);
                     recyclerView.setAdapter(songAdapter);
                 } else {
-                    Toast.makeText(SongsByArtistActivity.this, "Không có bài hát nào của ca sĩ này.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SongByAlbumActivity.this, "Không có bài hát nào thuộc album  này.", Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(SongsByArtistActivity.this, "Không thể tải dữ liệu.", Toast.LENGTH_SHORT).show();
+
             }
         });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

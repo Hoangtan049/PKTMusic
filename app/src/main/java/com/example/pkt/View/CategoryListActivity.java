@@ -1,15 +1,17 @@
-package com.example.pkt;
+package com.example.pkt.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.pkt.Adapter.CategoryAdapter;
+import com.example.pkt.Classes.Category;
+import com.example.pkt.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

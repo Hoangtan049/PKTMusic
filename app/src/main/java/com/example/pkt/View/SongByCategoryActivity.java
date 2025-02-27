@@ -1,4 +1,4 @@
-package com.example.pkt;
+package com.example.pkt.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.pkt.Adapter.MyAdaper;
+import com.example.pkt.Classes.ListSong;
+import com.example.pkt.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

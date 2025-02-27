@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/key1"
-    tools:context=".SongByCategoryActivity">
+    tools:context=".View.SongByCategoryActivity">
     <LinearLayout
         android:id="@+id/Category"
         android:layout_width="match_parent"

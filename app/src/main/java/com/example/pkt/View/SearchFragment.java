@@ -1,4 +1,4 @@
-package com.example.pkt;
+package com.example.pkt.View;
 
 import android.os.Bundle;
 
@@ -13,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
+import com.example.pkt.Adapter.MyAdaper;
+import com.example.pkt.Classes.ListSong;
+import com.example.pkt.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,16 +25,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
-import java.util.RandomAccess;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Search#newInstance} factory method to
+ * Use the {@link SearchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Search extends Fragment {
+public class SearchFragment extends Fragment {
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
     MyAdaper myAdaper;
@@ -48,7 +48,7 @@ public class Search extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Search() {
+    public SearchFragment() {
         // Required empty public constructor
     }
 
@@ -61,8 +61,8 @@ public class Search extends Fragment {
      * @return A new instance of fragment Search.
      */
     // TODO: Rename and change types and number of parameters
-    public static Search newInstance(String param1, String param2) {
-        Search fragment = new Search();
+    public static SearchFragment newInstance(String param1, String param2) {
+        SearchFragment fragment = new SearchFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
