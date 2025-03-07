@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -56,6 +58,8 @@ public class ArtistListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artist_list2);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         searchView = findViewById(R.id.search_bar_artist);
         searchView.clearFocus();
         // Khởi tạo RecyclerView
@@ -103,5 +107,11 @@ public class ArtistListActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }

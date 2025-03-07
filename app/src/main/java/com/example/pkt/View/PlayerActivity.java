@@ -4,6 +4,9 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -28,17 +31,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PlayerActivity extends AppCompatActivity {
 
-    private MediaPlayer mediaPlayer;
-    private SeekBar seekBar;
-    private ArrayList<ListSong> songlist = new ArrayList<>();
-    private int CurrentIndex = 0;
-    private ImageButton btnPlay, btnPrev, btnNext;
-    private TextView tvSongTitle, tvArtist, tvLyric, tvSongStart, tvSongEnd;
-    private CircleImageView imageView;
+     MediaPlayer mediaPlayer;
+     SeekBar seekBar;
+    ArrayList<ListSong> songlist = new ArrayList<>();
+     int CurrentIndex = 0;
+    ImageButton btnPlay, btnPrev, btnNext,btnBackMedia;
+     TextView tvSongTitle, tvArtist, tvLyric, tvSongStart, tvSongEnd;
+     CircleImageView imageView;
 
-    private boolean isPlaying = false;
-    private boolean isPrepared = false; // Cờ trạng thái MediaPlayer
-    private Handler handler = new Handler();
+     boolean isPlaying = false;
+    boolean isPrepared = false; // Cờ trạng thái MediaPlayer
+     Handler handler = new Handler();
 
     // Runnable để cập nhật SeekBar theo thời gian
     private Runnable updateSeekBarRunnable = new Runnable() {
@@ -125,13 +128,11 @@ private  void  updateVIew(String songNames){
             return;
         }
 
-        if (mediaPlayer != null) {
-            mediaPlayer.release(); // Giải phóng tài nguyên nếu đã tồn tại MediaPlayer
-            mediaPlayer = null;
+        if (mediaPlayer == null) {
+            mediaPlayer = new MediaPlayer();
+        } else {
+            mediaPlayer.reset(); // Reset thay vì release để tránh delay
         }
-
-        isPrepared = false;
-        mediaPlayer = new MediaPlayer();
 
         try {
             mediaPlayer.setDataSource(songUrl); // Thiết lập nguồn dữ liệu từ URL
@@ -143,7 +144,7 @@ private  void  updateVIew(String songNames){
                 updateVIew(currentSong.getName());
                 handler.post(updateSeekBarRunnable); // Bắt đầu cập nhật SeekBar
             });
-
+            mediaPlayer.setOnCompletionListener(mp->playNextSong());
             mediaPlayer.setOnErrorListener((mp, what, extra) -> {
                 Log.e("MediaPlayerState", "Error: " + what + ", Extra: " + extra);
                 handleMediaPlayerError();
@@ -163,6 +164,7 @@ private  void  updateVIew(String songNames){
                 mediaPlayer.start();
                 isPlaying = true;
                 btnPlay.setImageResource(R.drawable.baseline_pause_24);
+                handler.post(updateSeekBarRunnable);
                 Log.d("MediaPlayerState", "Music started playing.");
             }
         } else {
@@ -198,6 +200,7 @@ private  void  updateVIew(String songNames){
             mediaPlayer.release();
             mediaPlayer = null;
         }
+        finish();
         super.onBackPressed();
     }
 
@@ -210,6 +213,23 @@ private  void  updateVIew(String songNames){
             mediaPlayer = null;
             handler.removeCallbacks(updateSeekBarRunnable); // Dừng cập nhật SeekBar khi Activity bị huỷ
         }
+    }
+    private void playNextSong() {
+        if (CurrentIndex < songlist.size() - 1) {
+            playSong(CurrentIndex + 1);
+        } else {
+            Toast.makeText(this, "No more songs", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) { // Xử lý nút back trên Action Bar
+            onBackPressed();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -227,19 +247,11 @@ private  void  updateVIew(String songNames){
         tvSongEnd = findViewById(R.id.txtSongEnd);
         tvSongStart = findViewById(R.id.txtSongStart);
 
-//        String songName = getIntent().getStringExtra("song_name");
-//        String artist = getIntent().getStringExtra("artist");
-//        String imageUrl = getIntent().getStringExtra("song_image");
-//        String songUrl = getIntent().getStringExtra("song_url");
-//        String lyric = getIntent().getStringExtra("lyric");
-//        tvSongTitle.setText(songName);
-//        tvArtist.setText(artist);
-//        tvLyric.setText(lyric);
-//
-//
-//        Glide.with(this)
-//                .load(imageUrl)
-//                .into(imageView);
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
 
         btnPrev.setOnClickListener(v -> {
             if (CurrentIndex > 0) {
@@ -286,6 +298,12 @@ private  void  updateVIew(String songNames){
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+                if (mediaPlayer != null && isPrepared) {
+                    mediaPlayer.seekTo(seekBar.getProgress());
+                    if (!mediaPlayer.isPlaying()) {
+                        playMusic(); // Nếu bài hát đang dừng, phát tiếp sau khi kéo SeekBar
+                    }
+                }
             }
         });
     }

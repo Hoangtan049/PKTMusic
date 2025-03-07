@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="8dp"
-
         android:layout_marginLeft="30dp"
         >
         <com.google.android.material.transformation.TransformationChildCard

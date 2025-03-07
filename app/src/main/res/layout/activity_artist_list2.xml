@@ -7,18 +7,20 @@
     android:background="@color/key1"
     tools:context=".View.ArtistListActivity">
 
+
     <SearchView
-        android:layout_width="match_parent"
+        android:id="@+id/search_bar_artist"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:id="@+id/search_bar_artist"
-        android:iconifiedByDefault="false"
-        android:searchHintIcon="@null"
-        android:queryHint="Nhập tên ca sĩ bạn yêu thích"
-        android:focusable="false"
+        android:background="@drawable/lavender_border"
         android:closeIcon="@drawable/baseline_clear_24"
-        android:searchIcon="@drawable/baseline_search_24"
-        android:background="@drawable/lavender_border" />
+        android:focusable="false"
+        android:iconifiedByDefault="false"
+        android:queryHint="Nhập tên ca sĩ bạn yêu thích"
+        android:searchHintIcon="@null"
+        android:searchIcon="@drawable/baseline_search_24" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listartist"

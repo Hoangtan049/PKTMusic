@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -60,6 +62,7 @@ public class SongByAlbumActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_by_album);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         searchView = findViewById(R.id.search_bar_album);
         recyclerView = findViewById(R.id.listsongbyalbum);
         recyclerView.setHasFixedSize(true);
@@ -107,5 +110,11 @@ public class SongByAlbumActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }

@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -61,6 +63,7 @@ public class SongByCategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_by_category);
         textView = findViewById(R.id.category_name);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         imageView = findViewById(R.id.category_image);
         searchView = findViewById(R.id.search_bar_category);
         recyclerView = findViewById(R.id.listsongbycategory);
@@ -107,5 +110,11 @@ public class SongByCategoryActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }

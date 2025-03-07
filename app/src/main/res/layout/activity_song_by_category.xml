@@ -14,6 +14,7 @@
         android:padding="8dp"
         android:layout_marginLeft="30dp"
         >
+
         <com.google.android.material.transformation.TransformationChildCard
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -41,19 +42,21 @@
 
 
     <SearchView
+        android:id="@+id/search_bar_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
         android:layout_below="@id/Category"
-        android:layout_marginTop="55dp"
-        android:id="@+id/search_bar_category"
-        android:iconifiedByDefault="false"
-        android:searchHintIcon="@null"
-        android:queryHint="Nhập tên ca sĩ bạn yêu thích"
-        android:focusable="false"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/lavender_border"
         android:closeIcon="@drawable/baseline_clear_24"
-        android:searchIcon="@drawable/baseline_search_24"
-        android:background="@drawable/lavender_border" />
+        android:focusable="false"
+        android:iconifiedByDefault="false"
+        android:queryHint="Nhập tên thể loại bạn yêu thích"
+        android:searchHintIcon="@null"
+        android:searchIcon="@drawable/baseline_search_24" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listsongbycategory"

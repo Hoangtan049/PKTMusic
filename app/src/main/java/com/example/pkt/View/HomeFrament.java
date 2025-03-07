@@ -212,6 +212,8 @@ public class HomeFrament extends Fragment {
                     if (album != null) {
                         albumList.add(album);
                         Log.d("FirebaseData1", "List Album Object: " + album);
+                    }else {
+                        Log.e("FirebaseError", "Album data is missing");
                     }
                 }
                 if (albumList.size() > 0) {

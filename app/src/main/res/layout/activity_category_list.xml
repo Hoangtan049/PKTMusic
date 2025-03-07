@@ -6,18 +6,23 @@
     android:layout_height="match_parent"
     android:background="@color/key1"
     tools:context=".View.CategoryListActivity">
-   <SearchView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:id="@+id/search_bar_cate"
-    android:iconifiedByDefault="false"
-    android:searchHintIcon="@null"
-    android:queryHint="Nhập tên ca sĩ bạn yêu thích"
-    android:focusable="false"
-    android:closeIcon="@drawable/baseline_clear_24"
-    android:searchIcon="@drawable/baseline_search_24"
-    android:background="@drawable/lavender_border" />
+
+
+    <SearchView
+        android:id="@+id/search_bar_cate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/lavender_border"
+        android:closeIcon="@drawable/baseline_clear_24"
+        android:focusable="false"
+        android:iconifiedByDefault="false"
+        android:queryHint="Nhập tên ca sĩ bạn yêu thích"
+        android:searchHintIcon="@null"
+        android:searchIcon="@drawable/baseline_search_24">
+
+    </SearchView>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listcategory"
@@ -25,4 +30,6 @@
         android:layout_height="match_parent"
         android:layout_below="@id/search_bar_cate"
         android:scrollbars="vertical" />
+
+
 </RelativeLayout>
