@@ -10,10 +10,6 @@ public class ListSong implements Parcelable {
 
     public ListSong() {
     }
-
-    // Constructor với tất cả các tham số
-
-
     public ListSong(String image, String name, String artist, String URL, String category, String album, String lyrics, String key, Boolean favorite, int view) {
         Image = image;
         Name = name;
@@ -72,7 +68,7 @@ public class ListSong implements Parcelable {
         dest.writeString(Key);
     }
 
-    // Getter và Setter
+
 
     public String getKey() {
         return Key;

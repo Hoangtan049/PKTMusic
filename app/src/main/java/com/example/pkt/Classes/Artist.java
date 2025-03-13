@@ -3,12 +3,8 @@ package com.example.pkt.Classes;
 public class Artist {
     String imageArtist, name;
 
-
-
     public Artist() {
     }
-
-
     public Artist(String imageArtist, String name) {
         this.imageArtist = imageArtist;
         this.name = name;

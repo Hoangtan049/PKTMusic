@@ -95,7 +95,7 @@ public class HomeFrament extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         requireActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         //Slider
@@ -121,8 +121,8 @@ public class HomeFrament extends Fragment {
                         // Thêm bài hát vào slider
                         for (ListSong song : topSongs) {
                             remoteimages.add(new SlideModel(
-                                    song.getImage(),  // URL hình ảnh
-                                    song.getName(),   // Tên bài hát
+                                    song.getImage(),
+                                    song.getName(),
                                     ScaleTypes.CENTER_CROP
                             ));
                         }

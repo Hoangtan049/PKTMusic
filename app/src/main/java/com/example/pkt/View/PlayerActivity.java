@@ -211,7 +211,7 @@ private  void  updateVIew(String songNames){
             mediaPlayer.stop();
             mediaPlayer.release();
             mediaPlayer = null;
-            handler.removeCallbacks(updateSeekBarRunnable); // Dừng cập nhật SeekBar khi Activity bị huỷ
+            handler.removeCallbacks(updateSeekBarRunnable);
         }
     }
     private void playNextSong() {
@@ -224,7 +224,7 @@ private  void  updateVIew(String songNames){
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) { // Xử lý nút back trên Action Bar
+        if (item.getItemId() == android.R.id.home) {
             onBackPressed();
             return true;
         }

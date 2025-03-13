@@ -2,10 +2,8 @@ package com.example.pkt.Classes;
 
 public class Album {
     String imageAlbum, name;
-
     public Album() {
     }
-
     public Album(String imageAlbum, String name) {
         this.imageAlbum = imageAlbum;
         this.name = name;

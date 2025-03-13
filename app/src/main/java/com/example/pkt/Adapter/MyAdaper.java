@@ -50,9 +50,9 @@ public class MyAdaper extends RecyclerView.Adapter<MyAdaper.MyViewHolder> {
 
         // Cập nhật icon theo trạng thái yêu thích
         if (Boolean.TRUE.equals(listSong.getFavorite())) {
-            holder.fvrt_btn.setImageResource(R.drawable.baseline_favorite_24); // Icon yêu thích
+            holder.fvrt_btn.setImageResource(R.drawable.baseline_favorite_24);
         } else {
-            holder.fvrt_btn.setImageResource(R.drawable.sharp_favorite_border_24); // Icon không yêu thích
+            holder.fvrt_btn.setImageResource(R.drawable.sharp_favorite_border_24);
         }
 
         holder.fvrt_btn.setOnClickListener(v -> {
@@ -75,8 +75,6 @@ public class MyAdaper extends RecyclerView.Adapter<MyAdaper.MyViewHolder> {
                 Toast.makeText(context, "Đã thêm vào danh sách yêu thích", Toast.LENGTH_SHORT).show();
             }
 
-
-            // Cập nhật giao diện
             notifyItemChanged(holder.getAdapterPosition());
         });
         holder.itemView.setOnClickListener(v -> {
