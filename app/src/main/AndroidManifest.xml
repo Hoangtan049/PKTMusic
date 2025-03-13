@@ -11,7 +11,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="PKT MUSIC"
         android:supportsRtl="true"
         android:theme="@style/Theme.PKT"
         tools:targetApi="31">
@@ -38,7 +38,7 @@
         </activity>
         <activity android:name=".View.PlayerActivity">
 
-            <!-- Có thể thêm các thông tin cấu hình khác nếu cần -->
+
         </activity>
         <activity android:name=".View.ArtistListActivity" />
     </application>

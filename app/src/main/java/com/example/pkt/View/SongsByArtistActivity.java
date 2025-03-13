@@ -63,11 +63,11 @@ public class SongsByArtistActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_songs_by_artist);
+        setTitle("Danh sách bài hát");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         textView = findViewById(R.id.profile_name);
-
         imageView = findViewById(R.id.profile_image);
         searchView = findViewById(R.id.search_bar_song);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         recyclerView = findViewById(R.id.listsongbyartist);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

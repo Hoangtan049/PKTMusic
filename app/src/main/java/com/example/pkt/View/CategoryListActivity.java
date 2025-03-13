@@ -57,6 +57,7 @@ public class CategoryListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_list);
+        setTitle("Danh sách thể loại");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         searchView = findViewById(R.id.search_bar_cate);
         cateRecyclerView = findViewById(R.id.listcategory);

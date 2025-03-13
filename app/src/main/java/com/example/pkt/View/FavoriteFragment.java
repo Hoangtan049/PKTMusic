@@ -65,7 +65,6 @@ public class FavoriteFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,28 +73,21 @@ public class FavoriteFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
-
     private void loadFavoriteSongs() {
-
         if (list.isEmpty()) {
-
             recyclerView.setVisibility(View.GONE);
             textview.setVisibility(View.VISIBLE);
         } else {
-
             recyclerView.setVisibility(View.VISIBLE);
             textview.setVisibility(View.GONE);
         }
-
-
         myAdaper.notifyDataSetChanged();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
+        requireActivity().setTitle("Danh sách yêu thích");
         recyclerView = view.findViewById(R.id.listmusicfavorite);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -111,10 +103,10 @@ public class FavoriteFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    ListSong song = dataSnapshot.getValue(ListSong.class); // Chuyển đổi đối tượng
+                    ListSong song = dataSnapshot.getValue(ListSong.class);
                     if (song != null && Boolean.TRUE.equals(song.getFavorite())) {
                         song.setKey(dataSnapshot.getKey());
-                        list.add(song); // Thêm vào danh sách hiển thị
+                        list.add(song);
                     }
                     Log.d("FavoriteFragment", "Loaded song: " + song.getName());
                 }

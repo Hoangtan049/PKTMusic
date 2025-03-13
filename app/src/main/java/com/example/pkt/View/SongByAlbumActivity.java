@@ -62,6 +62,7 @@ public class SongByAlbumActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_by_album);
+        setTitle("Danh sách bài hát");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         searchView = findViewById(R.id.search_bar_album);
         recyclerView = findViewById(R.id.listsongbyalbum);

@@ -16,4 +16,6 @@
     <color name="key">#F8BBD0</color>
     <color name="key1">#FCE4EC</color>
     <color name="album1">#EED0D4 </color>
+    <color name="bottomtest">#FD4DE6</color>
+    <color name="header">#FF62EA</color>
 </resources>

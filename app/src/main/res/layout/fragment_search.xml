@@ -6,21 +6,11 @@
     android:background="@color/key1"
     tools:context=".View.SearchFragment">
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="TÌm Kiếm"
-        android:textSize="30dp" />
-
     <SearchView
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginEnd="12dp"
+        android:layout_margin="8dp"
         android:background="@drawable/lavender_border"
         android:closeIcon="@drawable/baseline_clear_24"
         android:focusable="false"

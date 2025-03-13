@@ -58,11 +58,10 @@ public class ArtistListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artist_list2);
-
+        setTitle("Danh sách ca sĩ");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         searchView = findViewById(R.id.search_bar_artist);
         searchView.clearFocus();
-        // Khởi tạo RecyclerView
         artistRecyclerView = findViewById(R.id.listartist);
         artistRecyclerView.setHasFixedSize(true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);

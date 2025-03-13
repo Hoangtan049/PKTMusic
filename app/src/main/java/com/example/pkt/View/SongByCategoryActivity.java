@@ -62,8 +62,9 @@ public class SongByCategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_by_category);
-        textView = findViewById(R.id.category_name);
+        setTitle("Danh sách bài hát");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        textView = findViewById(R.id.category_name);
         imageView = findViewById(R.id.category_image);
         searchView = findViewById(R.id.search_bar_category);
         recyclerView = findViewById(R.id.listsongbycategory);

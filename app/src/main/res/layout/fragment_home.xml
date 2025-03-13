@@ -16,13 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/home"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="PKT MUSIC"
-                android:textSize="30dp" />
+
 
             <com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/image_slider"
@@ -60,7 +54,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/artist" />
+                            android:src="@drawable/logoartist" />
 
                         <TextView
                             android:id="@+id/text_overlay_Artist"
@@ -96,7 +90,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/category" />
+                            android:src="@drawable/logocategory" />
 
                         <!-- Chữ hiển thị khi hover -->
                         <TextView
