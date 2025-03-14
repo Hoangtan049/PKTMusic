@@ -22,16 +22,13 @@ public class MainActivity extends AppCompatActivity {
         replaceFrament(new HomeFrament());
 
         binding.navigation.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.home:
-                    replaceFrament(new HomeFrament());
-                    break;
-                case R.id.search:
-                    replaceFrament(new SearchFragment());
-                    break;
-                case R.id.favorite:
-                    replaceFrament(new FavoriteFragment());
-                    break;
+            int itemId = item.getItemId();
+            if (itemId == R.id.home) {
+                replaceFrament(new HomeFrament());
+            } else if (itemId == R.id.search) {
+                replaceFrament(new SearchFragment());
+            } else if (itemId == R.id.favorite) {
+                replaceFrament(new FavoriteFragment());
             }
             return true;
         });

@@ -135,13 +135,10 @@ public class HomeFrament extends Fragment {
                                 Toast.makeText(getActivity().getApplicationContext(),
                                         "Bạn đã chọn: " + topSongs.get(position).getName(),
                                         Toast.LENGTH_SHORT).show();
-
-
                             }
 
                             @Override
                             public void doubleClick(int position) {
-
                             }
                         });
                     }
@@ -170,9 +167,7 @@ public class HomeFrament extends Fragment {
                     if (listSong != null) {
                         listSong.setKey(dataSnapshot.getKey());
                         list.add(listSong);
-
                         Log.d("FirebaseData", "ListSong Object: " + listSong);
-
                     }
 
                 }
@@ -212,7 +207,7 @@ public class HomeFrament extends Fragment {
                     if (album != null) {
                         albumList.add(album);
                         Log.d("FirebaseData1", "List Album Object: " + album);
-                    }else {
+                    } else {
                         Log.e("FirebaseError", "Album data is missing");
                     }
                 }
