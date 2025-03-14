@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="Help"
+        android:id="@+id/mnHelp"
+        android:icon="@drawable/baseline_help_24"
+        app:showAsAction="always"/>
+    <item android:title="Info"
+        android:id="@+id/mnInfo"
+        android:icon="@drawable/baseline_info_24"
+        app:showAsAction="always"/>
+</menu>

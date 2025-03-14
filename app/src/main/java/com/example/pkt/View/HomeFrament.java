@@ -97,6 +97,7 @@ public class HomeFrament extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        requireActivity().setTitle("PKT MUSIC");
         requireActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         //Slider
         mainslider = (ImageSlider) view.findViewById(R.id.image_slider);

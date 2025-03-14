@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".View.HelpActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_margin="8dp"
+        android:text="Hướng dẫn sử dụng" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_margin="8dp"
+        android:text="Giới thiệu " />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_marginLeft="8dp"
+        android:text="App Nhạc PKT được phát triển để thưởng thức những bài nhạc mà mình yêu thích" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_margin="8dp"
+        android:text="Hướng dẫn " />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_margin="8dp"
+        android:text="Trang chủ sẽ gồm Slider chứa top bài hát có lượt view cao nhất.Phía dưới có 2 Button để xem danh sách nghệ sĩ và danh sách thể loại .Tiếp theo là danh sách album và cuối cùng là những bài hát hệ thống đề xuất." />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_margin="8dp"
+        android:text="Tìm kiếm sẽ giúp người dùng tìm kiếm những bài hát hoẵ nghệ sĩ mà mình yêu thích." />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_margin="8dp"
+        android:text="Yêu thích khi muốn lưu 1 bài hát yêu thích sẽ bấm vào nút trái tim sau khi bấm bài hát sẽ xuất hiện bên tran Yêu Thích." />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_margin="8dp"
+        android:text="Tại trang chủ khi nhấn vào Button Ca sĩ sẽ hiện ra danh sách ca sĩ tại đây có thể tìm kiếm tên ca sĩ khi nhấn vào 1 ca sĩ bất kỳ sẽ hiện ra những bài hát của ca sĩ đó." />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_margin="8dp"
+        android:text="Tại trang chủ khi nhấn vào Button Thể loại sẽ hiện ra danh sách thể loại tại đây có thể tìm kiếm thể loại khi nhấn vào 1 thể loại bất kỳ sẽ hiện ra những bài hát thuộc thể loại đó." />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_margin="8dp"
+        android:text="Tại trang chủ khi nhấn vào 1 Album bất kỳ sẽ hiện ra những bài hát thuộc Album đó." />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_margin="8dp"
+        android:text="Và cuối cùng khi chọn vào 1 bài hát bất kỳ sẽ hiện ra trang phát nhạc và nhạc sẽ tự động phát , có thể chuyển bài tiếp theo hoặc bài trước có thể dừng lại và tiếp tục bài hát ,khi phát hết bài hát sẽ chuyển qua bài tiếp theo,phía dưới sẽ có lời bài hát." />
+</LinearLayout>

@@ -16,6 +16,12 @@
         android:theme="@style/Theme.PKT"
         tools:targetApi="31">
         <activity
+            android:name=".View.HelpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.InfoActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.SongByAlbumActivity"
             android:exported="false" />
         <activity
@@ -36,10 +42,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.PlayerActivity">
-
-
-        </activity>
+        <activity android:name=".View.PlayerActivity" />
         <activity android:name=".View.ArtistListActivity" />
     </application>
 
