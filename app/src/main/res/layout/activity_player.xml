@@ -126,6 +126,15 @@
                     android:background="@drawable/round_border"
                     android:src="@drawable/baseline_skip_next_24"
                     android:visibility="visible" />
+
+                <ImageButton
+                    android:id="@+id/btnRepeat"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="end|center"
+                    android:background="@drawable/round_border"
+                    app:srcCompat="@drawable/baseline_repeat_24" />
+
             </LinearLayout>
 
             <TextView

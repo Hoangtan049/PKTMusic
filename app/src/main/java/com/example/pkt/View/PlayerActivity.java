@@ -1,5 +1,6 @@
 package com.example.pkt.View;
 
+import android.animation.ObjectAnimator;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -31,17 +33,19 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PlayerActivity extends AppCompatActivity {
 
-     MediaPlayer mediaPlayer;
-     SeekBar seekBar;
+    MediaPlayer mediaPlayer;
+    SeekBar seekBar;
     ArrayList<ListSong> songlist = new ArrayList<>();
-     int CurrentIndex = 0;
-    ImageButton btnPlay, btnPrev, btnNext,btnBackMedia;
-     TextView tvSongTitle, tvArtist, tvLyric, tvSongStart, tvSongEnd;
-     CircleImageView imageView;
+    int CurrentIndex = 0;
+    ImageButton btnPlay, btnPrev, btnNext, btnRepeat;
+    TextView tvSongTitle, tvArtist, tvLyric, tvSongStart, tvSongEnd;
+    CircleImageView imageView;
+    ObjectAnimator rotateAnimation;
 
-     boolean isPlaying = false;
+    boolean isPlaying = false;
     boolean isPrepared = false; // Cờ trạng thái MediaPlayer
-     Handler handler = new Handler();
+    boolean isRepeat = false;
+    Handler handler = new Handler();
 
     // Runnable để cập nhật SeekBar theo thời gian
     private Runnable updateSeekBarRunnable = new Runnable() {
@@ -65,34 +69,36 @@ public class PlayerActivity extends AppCompatActivity {
         int seconds = (timeInMillis / 1000) % 60;
         return String.format("%02d:%02d", minutes, seconds);
     }
-private  void  updateVIew(String songNames){
-    DatabaseReference songRef=FirebaseDatabase.getInstance().getReference("ListSong");
-    songRef.orderByChild("Name").equalTo(songNames).addListenerForSingleValueEvent(new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            if (snapshot.exists()) {
-                for (DataSnapshot songSnapshot : snapshot.getChildren()) {
-                    DatabaseReference songRef = songSnapshot.getRef();
-                    Integer currentViews = songSnapshot.child("View").getValue(Integer.class);
-                    if (currentViews == null) currentViews = 0;
-                    songRef.child("View").setValue(currentViews + 1);
-                    Log.d("FirebaseUpdate", "Updated views for song: " + songNames);
+
+    private void updateVIew(String songNames) {
+        DatabaseReference songRef = FirebaseDatabase.getInstance().getReference("ListSong");
+        songRef.orderByChild("Name").equalTo(songNames).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot songSnapshot : snapshot.getChildren()) {
+                        DatabaseReference songRef = songSnapshot.getRef();
+                        Integer currentViews = songSnapshot.child("View").getValue(Integer.class);
+                        if (currentViews == null) currentViews = 0;
+                        songRef.child("View").setValue(currentViews + 1);
+                        Log.d("FirebaseUpdate", "Updated views for song: " + songNames);
+                    }
+                } else {
+                    Log.e("FirebaseError", "Song with name '" + songNames + "' not found.");
                 }
-            } else {
-                Log.e("FirebaseError", "Song with name '" + songNames + "' not found.");
             }
-        }
 
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-        }
-    });
-}
+            }
+        });
+    }
+
     private void fetchSongsFromIntent() {
         // Nhận dữ liệu từ Intent
         songlist = getIntent().getParcelableArrayListExtra("song_list");
-        int currentIndex = getIntent().getIntExtra("current_song_index",0);
+        int currentIndex = getIntent().getIntExtra("current_song_index", 0);
         if (songlist != null && !songlist.isEmpty()) {
             playSong(currentIndex);
         } else {
@@ -117,11 +123,11 @@ private  void  updateVIew(String songNames){
         seekBar.setProgress(0);
         btnPlay.setImageResource(R.drawable.baseline_pause_24);
         // Thiết lập MediaPlayer với URL mới
-        initializeMediaPlayer(currentSong.getURL(),currentSong);
+        initializeMediaPlayer(currentSong.getURL(), currentSong);
 
     }
 
-    private void initializeMediaPlayer(String songUrl,ListSong currentSong) {
+    private void initializeMediaPlayer(String songUrl, ListSong currentSong) {
         if (songUrl == null || songUrl.isEmpty()) {
             Toast.makeText(this, "Invalid song URL", Toast.LENGTH_SHORT).show();
             Log.d("MediaPlayerState", "Music cc");
@@ -141,10 +147,19 @@ private  void  updateVIew(String songNames){
                 seekBar.setMax(mediaPlayer.getDuration()); // Thiết lập độ dài tối đa cho SeekBar
                 btnPlay.setEnabled(true);
                 mediaPlayer.start();
+                startRotation();
                 updateVIew(currentSong.getName());
                 handler.post(updateSeekBarRunnable); // Bắt đầu cập nhật SeekBar
             });
-            mediaPlayer.setOnCompletionListener(mp->playNextSong());
+            mediaPlayer.setOnCompletionListener(mp -> {
+                        if (isRepeat) {
+                            playSong(CurrentIndex);
+                        } else {
+                            playNextSong();
+                        }
+                    }
+
+            );
             mediaPlayer.setOnErrorListener((mp, what, extra) -> {
                 Log.e("MediaPlayerState", "Error: " + what + ", Extra: " + extra);
                 handleMediaPlayerError();
@@ -165,6 +180,7 @@ private  void  updateVIew(String songNames){
                 isPlaying = true;
                 btnPlay.setImageResource(R.drawable.baseline_pause_24);
                 handler.post(updateSeekBarRunnable);
+                startRotation();
                 Log.d("MediaPlayerState", "Music started playing.");
             }
         } else {
@@ -179,6 +195,7 @@ private  void  updateVIew(String songNames){
             isPlaying = false;
             btnPlay.setImageResource(R.drawable.baseline_play_arrow_24);
             handler.removeCallbacks(updateSeekBarRunnable); // Dừng cập nhật SeekBar khi tạm dừng
+            stopRotation();
             Log.d("MediaPlayerState", "Music paused.");
         }
     }
@@ -214,6 +231,7 @@ private  void  updateVIew(String songNames){
             handler.removeCallbacks(updateSeekBarRunnable);
         }
     }
+
     private void playNextSong() {
         if (CurrentIndex < songlist.size() - 1) {
             playSong(CurrentIndex + 1);
@@ -232,6 +250,20 @@ private  void  updateVIew(String songNames){
         return super.onOptionsItemSelected(item);
     }
 
+    private void startRotation() {
+        if (rotateAnimation == null) {
+            rotateAnimation = ObjectAnimator.ofFloat(imageView, "rotation", 0f, 360f);
+            rotateAnimation.setDuration(10000);
+            rotateAnimation.setRepeatCount(ObjectAnimator.INFINITE);
+            rotateAnimation.setInterpolator(new LinearInterpolator());
+        }
+        if (!rotateAnimation.isRunning()) rotateAnimation.start();
+    }
+
+    private void stopRotation() {
+        if (rotateAnimation != null && rotateAnimation.isRunning()) rotateAnimation.pause();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -246,13 +278,22 @@ private  void  updateVIew(String songNames){
         tvLyric = findViewById(R.id.lyrics);
         tvSongEnd = findViewById(R.id.txtSongEnd);
         tvSongStart = findViewById(R.id.txtSongStart);
+        btnRepeat = findViewById(R.id.btnRepeat);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        btnRepeat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isRepeat = !isRepeat;
+                if (isRepeat) {
+                    btnRepeat.setColorFilter(getResources().getColor(R.color.header));
 
-
-
-
+                } else {
+                    btnRepeat.setColorFilter(getResources().getColor(R.color.black));
+                }
+            }
+        });
         btnPrev.setOnClickListener(v -> {
             if (CurrentIndex > 0) {
                 playSong(CurrentIndex - 1);
